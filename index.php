@@ -1,5 +1,5 @@
 <?php 
-    require_once __DIR__.'/vendor/autoload.php';
+    require_once __DIR__.'vendor/autoload.php';
     $app = new Silex\Application();
     $app->post('/webhook', function (Request $request) {
         header('Content-Type: application/json');
@@ -7,5 +7,8 @@
         $req_dump = print_r( $request, true );
         $fp = file_put_contents( 'webhook_request.log', $req_dump );
     });
-    $app->run();
+
+    $app->get('/hello/{name}', function ($name) use ($app) {
+        return 'Hello '.$app->escape($name);
+      });
 ?>
