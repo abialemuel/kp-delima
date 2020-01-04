@@ -18,7 +18,7 @@
       });
 
     $app->post('/feedback', function (Request $request) {
-        return new Response('Thank you for your feedback!', 201);
+        return new Response('Thank you for your feedback!', 200);
     });
 
     $app->run();
