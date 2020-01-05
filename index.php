@@ -4,14 +4,13 @@
     use Symfony\Component\HttpFoundation\JsonResponse;
 
     require_once __DIR__.'/vendor/autoload.php';
+    require_once __DIR__.'/helper.php';
     $app = new Silex\Application();
     $app['debug'] = true;
     
     $app->post('/webhook', function (Request $request) {
         header('Content-Type: application/json');
-        $request = file_get_contents('php://input');
-        $req_dump = print_r( $request, true );
-        $fp = file_put_contents( 'webhook_request.log', $req_dump );
+        logger($request);
     });
 
     $app->get('/hello/{name}', function ($name) use ($app) {
@@ -25,9 +24,7 @@
             $params = json_decode($content, true); // 2nd param to get as array
         }
 
-        $request = file_get_contents('php://input');
-        $req_dump = print_r( $request, true );
-        $fp = file_put_contents( 'webhook_request.log', $req_dump );
+        logger($request);
     
         return new JsonResponse(['data' => $params]);
     });
