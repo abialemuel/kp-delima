@@ -5,6 +5,7 @@
     use Symfony\Component\HttpClient\HttpClient;
 
     $host = 'https://api.line.me';
+    $token = 'Bearer yAUR+ZsrKGgz+mSR/6GyyYHw9kDUIrjFwhN4wNmYPsJiDSgSbh5XPDFpgR/UPBfmFPN3Tus/XXqLQBsupI5dTMIRgky+uszuaVms9PEOgDLuMTmPh8wxBmkr/01so29avFqmgoAXLHS3DY4IgfOiSgdB04t89/1O/w1cDnyilFU=';
 
     function logger($request)
     {
@@ -42,7 +43,10 @@
      
         private function get_user($userID)
         {
-            $client = HttpClient::create();
+            $client = HttpClient::create(['headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => "$token",
+            ]]);
             $response = $client->request('GET', "$host" . "/v2/bot/profile/" . "$userID");
             return get_params($response);
         }
