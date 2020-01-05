@@ -30,10 +30,10 @@
      
         function __construct( $id ) {
             $user = get_user($id);
-            $this->userId = $userId;
-            $this->displayName = $displayName;
-            $this->pictureURL = $pictureURL;
-            $this->statusMessage = $pictureURL;
+            $this->userId = $user['userId'];
+            $this->displayName = $user['displayName'];
+            $this->pictureURL = $user['pictureURL'];
+            $this->statusMessage = $user['pictureURL'];
         }
      
         function getAll() {
