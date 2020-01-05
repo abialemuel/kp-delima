@@ -5,6 +5,7 @@
 
     require_once __DIR__.'/vendor/autoload.php';
     require_once __DIR__.'/helper.php';
+
     $app = new Silex\Application();
     $app['debug'] = true;
     
@@ -21,8 +22,8 @@
         $params = get_params($request);
 
         logger($request);
-    
-        return new JsonResponse(['data' => $params]);
+        
+        return new JsonResponse(['data' => $params['message']]);
     });
 
     $app->run();
