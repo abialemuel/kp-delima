@@ -30,7 +30,7 @@
         private $statusMessage;
      
         function __construct( $id ) {
-            $user = get_user($id);
+            $user = $this->get_user($id);
             $this->userId = $user['userId'];
             $this->displayName = $user['displayName'];
             $this->pictureURL = $user['pictureURL'];
@@ -41,7 +41,7 @@
             return $this;
         }
      
-        private function get_user($userID)
+        function get_user($userID)
         {
             $client = HttpClient::create(['headers' => [
                 'Content-Type' => 'application/json',
