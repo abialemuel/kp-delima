@@ -48,6 +48,7 @@
                 'Authorization' => "$token",
             ]]);
             $response = $client->request('GET', "$host" . "/v2/bot/profile/" . "$userID");
+            logger($response);    
             return get_params($response);
         }
     }
