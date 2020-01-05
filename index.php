@@ -7,7 +7,7 @@
     $app = new Silex\Application();
     $app['debug'] = true;
     
-    $app->post('/webhook', function (Request $request) use ($app) {
+    $app->post('/webhook', function (Request $request) {
         header('Content-Type: application/json');
         $request = file_get_contents('php://input');
         $req_dump = print_r( $request, true );
@@ -24,6 +24,10 @@
         {
             $params = json_decode($content, true); // 2nd param to get as array
         }
+
+        $request = file_get_contents('php://input');
+        $req_dump = print_r( $request, true );
+        $fp = file_put_contents( 'webhook_request.log', $req_dump );
     
         return new JsonResponse(['data' => $params]);
     });
