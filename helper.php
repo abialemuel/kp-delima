@@ -9,4 +9,10 @@
         $req_dump = print_r( $request, true ) . "\n";
         $fp = file_put_contents( 'webhook_request.log', $req_dump, FILE_APPEND );
     }
+
+    function get_params($request)
+    {
+        $content = $request->getContent();
+        return json_decode($content, true);
+    }
 ?>

@@ -1,8 +1,4 @@
 <?php 
-    use Symfony\Component\HttpFoundation\Request;
-    use Symfony\Component\HttpFoundation\Response;
-    use Symfony\Component\HttpFoundation\JsonResponse;
-
     require_once __DIR__.'/vendor/autoload.php';
     require_once __DIR__.'/helper.php';
     $app = new Silex\Application();
@@ -18,11 +14,7 @@
       });
 
     $app->post('/feedback', function (Request $request) {
-        $content = $request->getContent();
-        if (!empty($content))
-        {
-            $params = json_decode($content, true); // 2nd param to get as array
-        }
+        $params = get_params($request);
 
         logger($request);
     
