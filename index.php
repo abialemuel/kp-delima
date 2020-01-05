@@ -19,9 +19,13 @@
       });
 
     $app->post('/feedback', function (Request $request) {
-        $message = $request->request->get('message');
+        $content = $request->request->getContent();
+        if (!empty($content))
+        {
+            $params = json_decode($content, true); // 2nd param to get as array
+        }
     
-        return new JsonResponse(['data' => $message]);
+        return new JsonResponse(['data' => $params]);
     });
 
     $app->run();
