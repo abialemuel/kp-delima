@@ -13,6 +13,9 @@
     function get_params($request)
     {
         $content = $request->getContent();
-        return json_decode($content, true);
+        if (!empty($content))
+        {
+            return json_decode($content, true); // 2nd param to get as array
+        }
     }
 ?>
