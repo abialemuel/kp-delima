@@ -19,7 +19,7 @@
       });
 
     $app->post('/feedback', function (Request $request) {
-        $message = $request->get('message');
+        $message = $request->request->get('message');
     
         return new JsonResponse(['data' => $message]);
     });
