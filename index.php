@@ -20,10 +20,11 @@
 
     $app->post('/feedback', function (Request $request) {
         $params = get_params($request);
-
+        // $user = new User($params['source']['userId']);
+        $user = new User('Ud4f84658b86dbf2fc6f0a96bbe43570f');
         logger($request);
         
-        return new JsonResponse(['data' => $params['message']]);
+        return new JsonResponse(['user' => $user]);
     });
 
     $app->run();
