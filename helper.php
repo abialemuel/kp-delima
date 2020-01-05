@@ -6,7 +6,7 @@
     function logger($request)
     {
         $request = file_get_contents('php://input');
-        $req_dump = print_r( $request . '/n', true );
+        $req_dump = print_r( $request, true ) . '/n';
         $fp = file_put_contents( 'webhook_request.log', $req_dump, FILE_APPEND );
     }
 ?>
