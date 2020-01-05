@@ -19,7 +19,7 @@
       });
 
     $app->post('/feedback', function (Request $request) {
-        $content = $request->request->getContent();
+        $content = $request->getContent();
         if (!empty($content))
         {
             $params = json_decode($content, true); // 2nd param to get as array
